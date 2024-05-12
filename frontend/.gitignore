@@ -1,3 +1,6 @@
+# ログファイル
+*.log
+
 # 環境変数
 .env
 .env.msw
@@ -10,5 +13,5 @@ node_modules
 # ビルドファイル
 dist
 
-
-*storybook.log
+# カバレッジファイル
+coverage
