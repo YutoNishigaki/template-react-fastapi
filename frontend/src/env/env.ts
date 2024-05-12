@@ -1,40 +1,40 @@
-import { envStringToBoolean } from "./typeConversion";
+import { envStringToBoolean } from './typeConversion'
 
 interface EnvVariables {
-  VITE_DISABLE_MSW: boolean;
+  VITE_DISABLE_MSW: boolean
 }
 
 class EnvConfig {
-  private static instance: EnvConfig;
-  private envVariables: EnvVariables;
+  private static instance: EnvConfig
+  private envVariables: EnvVariables
 
   private constructor() {
-    this.envVariables = {} as EnvVariables;
-    this.loadEnv();
+    this.envVariables = {} as EnvVariables
+    this.loadEnv()
   }
 
   private loadEnv() {
     try {
       this.envVariables = {
         VITE_DISABLE_MSW: envStringToBoolean(import.meta.env.VITE_DISABLE_MSW),
-      };
+      }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   }
 
   public static getInstance(): EnvConfig {
     if (!EnvConfig.instance) {
-      EnvConfig.instance = new EnvConfig();
+      EnvConfig.instance = new EnvConfig()
     }
-    return EnvConfig.instance;
+    return EnvConfig.instance
   }
 
   public getValue(key: keyof EnvVariables) {
-    return this.envVariables[key];
+    return this.envVariables[key]
   }
 }
 
-const Env = EnvConfig.getInstance();
+const Env = EnvConfig.getInstance()
 
-export default Env;
+export default Env

@@ -1,5 +1,8 @@
 # 環境変数
 .env
+.env.msw
+.env.development
+.env.production
 
 # 依存関係ファイル
 node_modules

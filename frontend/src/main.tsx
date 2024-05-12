@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import Env from '@/env/env.ts'
+import Env from '@/env'
 import { logger } from '@/utils'
 
 // 環境変数からMSWを有効にするかどうかを判定
