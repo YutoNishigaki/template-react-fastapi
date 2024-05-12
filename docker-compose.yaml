@@ -1,0 +1,38 @@
+services:
+  sample-db:
+    container_name: sample-db-postgres
+    build: ./db
+    ports:
+      - 5499:5432
+    volumes:
+      - ./db/store:/var/lib/postgresql/data
+    networks:
+      - webnet
+  sample-backend:
+    container_name: sample-backend-fastapi
+    build: ./backend
+    volumes:
+      - ./backend/dockervenv:/src/.venv
+      - ./backend:/src
+    ports:
+      - 8000:8000
+    networks:
+      - webnet
+    depends_on:
+      - sample-db
+  sample-frontend:
+    container_name: sample-frontend-nextjs
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - ./frontend/node_modules:/app/node_modules
+    ports:
+      - 5173:5173
+    command: sh -c "bun run dev"
+    networks:
+      - webnet
+networks:
+  webnet:
+    driver: bridge
+volumes:
+  node_modules:
